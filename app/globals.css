@@ -1,0 +1,299 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Animation controls */
+.no-animation * {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
+.reduced-animation * {
+  animation-duration: 0.1s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0.1s !important;
+  transition-delay: 0s !important;
+}
+
+/* Border radius controls */
+[data-radius="subtle"] {
+  --radius: 0.25rem;
+}
+
+[data-radius="default"] {
+  --radius: 0.5rem;
+}
+
+[data-radius="rounded"] {
+  --radius: 1rem;
+}
+
+/* Dark mode text improvements */
+.dark {
+  color-scheme: dark;
+}
+
+.dark .text-gray-600 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-700 {
+  @apply text-gray-200;
+}
+
+.dark .text-gray-800 {
+  @apply text-gray-100;
+}
+
+.dark .text-gray-900 {
+  @apply text-white;
+}
+
+/* Ensure proper contrast in dark mode */
+.dark .bg-white {
+  @apply bg-gray-900;
+}
+
+.dark .bg-gray-50 {
+  @apply bg-gray-800;
+}
+
+.dark .bg-gray-100 {
+  @apply bg-gray-700;
+}
+
+.dark .bg-gray-200 {
+  @apply bg-gray-600;
+}
+
+/* Header dark mode improvements */
+.dark header {
+  @apply bg-gray-900/95 border-gray-800;
+}
+
+.dark .bg-background\/95 {
+  @apply bg-gray-900/95;
+}
+
+/* Card improvements for dark mode */
+.dark .bg-white\/95 {
+  @apply bg-gray-900/95;
+}
+
+.dark .bg-white\/90 {
+  @apply bg-gray-900/90;
+}
+
+.dark .border-white\/20 {
+  @apply border-gray-700/50;
+}
+
+.dark .border-white\/40 {
+  @apply border-gray-600/50;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Focus styles */
+.focus-visible:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Loading skeleton */
+@keyframes skeleton {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-skeleton {
+  animation: skeleton 2s ease-in-out infinite;
+}
+
+/* Dynamic gradient backgrounds based on accent color */
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Dynamic theme style backgrounds that adapt to accent color */
+[data-theme-style^="gradient-"] {
+  background: var(
+    --theme-gradient,
+    linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--primary) / 0.05) 100%)
+  );
+}
+
+.dark [data-theme-style^="gradient-"] {
+  background: var(
+    --theme-gradient,
+    linear-gradient(135deg, hsl(var(--primary) / 0.2) 0%, hsl(var(--primary) / 0.1) 100%)
+  );
+}
+
+/* Ensure all primary-colored elements use the dynamic accent color */
+.bg-primary {
+  background-color: hsl(var(--primary));
+}
+
+.text-primary {
+  color: hsl(var(--primary));
+}
+
+.border-primary {
+  border-color: hsl(var(--primary));
+}
+
+.ring-primary {
+  --tw-ring-color: hsl(var(--primary));
+}
+
+/* Button variants that use primary color */
+.bg-primary\/10 {
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+.bg-primary\/20 {
+  background-color: hsl(var(--primary) / 0.2);
+}
+
+.hover\:bg-primary\/90:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+/* Ensure gradients in components use the dynamic primary color */
+.from-blue-600,
+.from-purple-600,
+.from-green-600,
+.from-orange-600,
+.from-pink-600,
+.from-teal-600 {
+  --tw-gradient-from: hsl(var(--primary)) var(--tw-gradient-from-position);
+}
+
+.to-purple-600,
+.to-blue-600,
+.to-green-600,
+.to-orange-600,
+.to-pink-600,
+.to-teal-600 {
+  --tw-gradient-to: hsl(var(--primary) / 0.8) var(--tw-gradient-to-position);
+}
